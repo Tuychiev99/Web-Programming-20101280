@@ -1,5 +1,5 @@
-// 🌍 Render Server API URL (이걸로 변경!)
-const API_URL = "https://java99.onrender.com/generate";
+// 🌍 Render Server API URL (render/로컬 모두에서 동작하도록 상대 경로 사용)
+const API_URL = "/api/generate";
 
 const generateBtn = document.getElementById("generateBtn");
 const promptInput = document.getElementById("promptInput");

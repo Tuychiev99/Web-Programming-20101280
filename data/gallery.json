@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Cyberpunk Cityscape",
+    "tags": ["cyberpunk", "city", "night"],
+    "prompt": "A futuristic cyberpunk city glowing with neon lights, ultra-detailed",
+    "image": "images/art1.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Fantasy Forest Spirit",
+    "tags": ["fantasy", "nature", "magic"],
+    "prompt": "Beautiful spirit creature walking in a glowing forest",
+    "image": "images/art2.jpg"
+  },
+  {
+    "id": 3,
+    "title": "AI Portrait Sculpture",
+    "tags": ["portrait", "3D", "sculpture"],
+    "prompt": "Hyper-realistic AI generated stone sculpture face",
+    "image": "images/art3.jpg"
+  }
+]

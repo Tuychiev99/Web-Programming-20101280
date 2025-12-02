@@ -5,8 +5,11 @@ const styleSelect = document.getElementById("styleSelect");
 const resultArea = document.getElementById("resultArea");
 const loading = document.getElementById("loading");
 
-// 🔥 프록시 서버 주소
-const API_URL = "http://localhost:3000/api/generate";
+// 🔥 프록시 서버 주소 (로컬/배포 환경 자동 분기)
+const API_URL =
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://localhost:3000/api/generate"
+    : "/api/generate";
 
 generateBtn.addEventListener("click", async () => {
   const prompt = promptInput.value.trim();
@@ -36,7 +39,13 @@ generateBtn.addEventListener("click", async () => {
       return;
     }
 
-    const imageUrl = data.data[0].url;
+    // 서버는 { image: "data:image/png;base64,..." } 형태로 응답
+    const imageUrl = data.image || data.data?.[0]?.url;
+
+    if (!imageUrl) {
+      alert("Error: No image returned from server.");
+      return;
+    }
 
     resultArea.innerHTML = `
       <h2>Your AI Artwork</h2>
@@ -69,3 +78,4 @@ function saveToGallery(prompt, style, url) {
   localStorage.setItem("generatedArt", JSON.stringify(saved));
   alert("Saved! Check the gallery.");
 }
+

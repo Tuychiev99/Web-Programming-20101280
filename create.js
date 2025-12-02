@@ -1,10 +1,12 @@
-const API_URL = "/api/generate";
-
+// create.js 완성본
 const generateBtn = document.getElementById("generateBtn");
 const promptInput = document.getElementById("promptInput");
 const styleSelect = document.getElementById("styleSelect");
 const resultArea = document.getElementById("resultArea");
 const loading = document.getElementById("loading");
+
+// 🔥 프록시 서버 주소
+const API_URL = "http://localhost:3000/api/generate";
 
 generateBtn.addEventListener("click", async () => {
   const prompt = promptInput.value.trim();
@@ -30,15 +32,15 @@ generateBtn.addEventListener("click", async () => {
     loading.style.display = "none";
 
     if (data.error) {
-      resultArea.innerHTML = `<p class="error">Error: ${data.error}</p>`;
+      alert("Error: " + data.error);
       return;
     }
 
-    const imageUrl = data.image;
+    const imageUrl = data.data[0].url;
 
     resultArea.innerHTML = `
       <h2>Your AI Artwork</h2>
-      <img src="${imageUrl}" alt="Generated artwork for prompt: ${prompt}" title="Generated artwork for prompt: ${prompt}" />
+      <img src="${imageUrl}" />
       <br/><br/>
       <button id="saveBtn">Save to Gallery</button>
     `;
@@ -49,7 +51,7 @@ generateBtn.addEventListener("click", async () => {
 
   } catch (err) {
     loading.style.display = "none";
-    resultArea.innerHTML = `<p class="error">Failed to generate image. Please try again.</p>`;
+    alert("Failed to generate image.");
     console.error(err);
   }
 });
